@@ -1,4 +1,4 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import { sequelize } from "../db";
 
 export const ToDo = sequelize.define('todo', {

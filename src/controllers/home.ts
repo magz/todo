@@ -14,14 +14,3 @@ export const db_test = async (req: Request, res: Response) => {
         res.send("something went wrong with the database connection" + error)
       }
 }
-
-export const db_list_tables = async (req: Request, res: Response) => {
-    try {
-        sequelize.getQueryInterface().showAllSchemas().then((tableObj) => {
-            res.send(tableObj)
-        })
-
-    } catch (error) {
-        res.send(error)
-    }
-}

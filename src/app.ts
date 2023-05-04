@@ -21,7 +21,6 @@ app.set("view engine", "pug");
 
 app.get('/', homeController.home);
 app.get('/db', homeController.db_test);
-app.get('/db_list', homeController.db_list_tables);
 
 app.get('/todos', toDoController.index)
 

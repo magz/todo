@@ -1,7 +1,12 @@
 import { Sequelize } from 'sequelize';
 
-export const sequelize = new Sequelize('todo_db', 'magz', 'password', {
-  host: 'db',
-  port: 5432,
-  dialect: 'postgres',
-});
+export const sequelize = new Sequelize(
+  process.env.PGDATABASE,
+  process.env.PGUSER, 
+  process.env.PGPASSWORD, 
+  {
+    host: 'db',
+    port: 5432,
+    dialect: 'postgres',
+  }
+);
