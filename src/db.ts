@@ -5,7 +5,7 @@ export const sequelize = new Sequelize(
   process.env.PGUSER, 
   process.env.PGPASSWORD, 
   {
-    host: 'db',
+    host: process.env.PGHOST,
     port: 5432,
     dialect: 'postgres',
   }

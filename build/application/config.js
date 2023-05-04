@@ -1,9 +1,9 @@
 module.exports = {
   "development": {
-    "username": "magz",
-    "password": "password",
-    "database": "todo_db",
-    "host": "db",
+    "username": process.env.PGUSER,
+    "password": process.env.PGPASSWORD,
+    "database": process.env.PGDATABASE,
+    "host": process.env.PGHOST,
     "port": 5432,
     "dialect": "postgres"
   }
