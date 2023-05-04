@@ -1,11 +1,27 @@
 import { Request, Response } from "express";
+import { sequelize } from "../db";
 
-/**
- * Home page.
- * @route GET /home
- */
 export const home = (req: Request, res: Response) => {
-    res.render("home", {
-        title: "home"
-    })
+    res.send("hi there!")
+}
+
+
+export const db_test = async (req: Request, res: Response) => {
+    try {
+        await sequelize.authenticate();
+        res.send("database connection working")
+      } catch (error) {
+        res.send("something went wrong with the database connection" + error)
+      }
+}
+
+export const db_list_tables = async (req: Request, res: Response) => {
+    try {
+        sequelize.getQueryInterface().showAllSchemas().then((tableObj) => {
+            res.send(tableObj)
+        })
+
+    } catch (error) {
+        res.send(error)
+    }
 }

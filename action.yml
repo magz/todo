@@ -1,0 +1,6 @@
+# action.yml
+name: 'To Do List App'
+description: 'Create and track todos'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

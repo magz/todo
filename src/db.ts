@@ -1,9 +1,7 @@
-const { Pool} = require('pg')
+import { Sequelize } from 'sequelize';
 
-const pool = new Pool({
-  user: 'michael',
-  database: 'todo',
-  password: 'starmane',
+export const sequelize = new Sequelize('todo_db', 'magz', 'password', {
+  host: 'db',
   port: 5432,
-  host: 'localhost',
-})
+  dialect: 'postgres',
+});
