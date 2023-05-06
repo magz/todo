@@ -20,7 +20,7 @@ COPY . .
 EXPOSE 3000
 
 # Set environment variables for the database connection
-ENV PGHOST=postgres
+ENV PGHOST=localhost
 ENV PGUSER=magz
 ENV PGDATABASE=todos
 ENV PGPASSWORD=password

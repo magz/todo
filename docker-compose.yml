@@ -1,31 +1,14 @@
 version: '3.9'
 
 services:
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: magz
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: todo_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-      - ./pg-init.sql:/docker-entrypoint-initdb.d/pg-init.sql
-
   app:
     build: .
     restart: always
     ports:
       - "3000:3000"
-    depends_on:
-      - db
     environment:
-      PGHOST: db
+      PGHOST: host.docker.internal
       PGUSER: magz
       PGDATABASE: todo_db
       PGPASSWORD: password
-
-volumes:
-  postgres-data:
+      PGPORT: "5432"
