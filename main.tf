@@ -37,6 +37,14 @@ container_definitions = jsonencode([
           "hostPort": 3000
         }
       ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/magz-app",
+          "awslogs-region": var.aws_region,
+          "awslogs-stream-prefix": "magz-app"
+        }
+      },
       "environment": [
         {
           "name": "PGDATABASE",
@@ -60,7 +68,7 @@ container_definitions = jsonencode([
 }
 
 resource "aws_ecs_cluster" "main" {
-  name = "example-cluster"
+  name = "main"
 }
 
 resource "aws_ecs_service" "default" {
@@ -96,4 +104,5 @@ resource "aws_db_instance" "postgres_db" {
   publicly_accessible = false
   vpc_security_group_ids = [aws_security_group.rds.id]
   db_subnet_group_name = aws_db_subnet_group.db_subnet_group.name
+  skip_final_snapshot     = true
 }
