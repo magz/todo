@@ -20,9 +20,9 @@ app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
 
 app.get('/', homeController.home);
-app.get('/db', homeController.db_test);
+// app.get('/db', homeController.db_test);
 
-app.get('/todos', toDoController.index)
+// app.get('/todos', toDoController.index)
 
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
