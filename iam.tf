@@ -1,12 +1,3 @@
-# -----------------------------------------------------------------------------
-# IAM Resources
-#
-# Manages IAM resources for hello-world-rest:
-#   * Policy and role for ECS Service
-#   * Policy and role for ECS Task
-# -----------------------------------------------------------------------------
-
-# == ECS Service
 data "aws_iam_policy_document" "ecs_assume_role_policy" {
   statement {
     actions = ["sts:AssumeRole"]
