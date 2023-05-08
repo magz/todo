@@ -26,4 +26,5 @@ ENV PGDATABASE=todos
 ENV PGPASSWORD=password
 
 # Start the application
-CMD sequelize db:migrate && npm start
+# CMD sequelize db:migrate && npm start
+CMD npm start

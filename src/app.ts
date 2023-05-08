@@ -1,29 +1,10 @@
-import express from 'express';
-import bodyParser from "body-parser";
-// import compression from "compression";  // compresses requests
-import path from "path";
-// import lusca from "lusca";
+import { Request, Response } from "express";
 
-import * as homeController from "./controllers/home"
-import * as toDoController from "./controllers/to_do"
+const express = require('express')
+const app = express()
 
-const app = express();
-const port = 3000;
+const port = 3000
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(lusca.xframe("SAMEORIGIN"));
-// app.use(lusca.xssProtection(true));
+app.get('/', (req: Request, res: Response) => res.send('Hello World!'))
 
-// app.use(compression());
-app.set("views", path.join(__dirname, "../views"));
-app.set("view engine", "pug");
-
-app.get('/', homeController.home);
-// app.get('/db', homeController.db_test);
-
-// app.get('/todos', toDoController.index)
-
-app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
-});
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
