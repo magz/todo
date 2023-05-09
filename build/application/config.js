@@ -1,8 +1,8 @@
 module.exports = {
   "development": {
-    "username": process.env.PGUSER,
-    "password": process.env.PGPASSWORD,
-    "database": process.env.PGDATABASE,
+    "username": "main",
+    "password": "foobarbaz",
+    "database": "magz",
     "host": process.env.PGHOST,
     "port": 5432,
     "dialect": "postgres"

@@ -24,7 +24,7 @@ variable "ecs_memory" {
 variable "ecs_image" {
   description = "The Docker image to use for the ECS task."
   type        = string
-  default     = "magz999/todo@sha256:08ca96628e068b4d47e5aef2903a185dc9ccaf4a383cab25f5214fa99d893f49"
+  default     = "magz999/todo@sha256:3ed5b7428d302bfb61b673d30b1e6b30776a013123f9d14d11d157b2e265e35f"
 }
 
 variable "container_port" {
