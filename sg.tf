@@ -1,6 +1,3 @@
-# -----------------------------------------------------------------------------
-# AWS Security Groups
-# -----------------------------------------------------------------------------
 resource "aws_security_group" "hello_backend" {
   name        = "${var.name}-backend"
   description = "Allow connections to the ${var.name} backend"
@@ -53,4 +50,21 @@ resource "aws_security_group" "hello_frontend" {
   }
 
   tags = merge(var.tags, { "Name" = "${var.name}-frontend" })
+}
+
+resource "aws_security_group" "db" {
+  name        = "${var.name}-db"
+  description = "Allow connections to the ${var.name} database"
+  vpc_id      = data.aws_vpc.current.id
+
+  ingress {
+    description     = "Permit database access"
+    security_groups = [aws_security_group.hello_frontend.id]
+    to_port         = 5432
+    from_port       = 5432
+    protocol        = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  tags = merge(var.tags, { "Name" = "${var.name}-db" })
 }

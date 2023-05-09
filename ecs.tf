@@ -77,3 +77,23 @@ resource "aws_ecs_task_definition" "hello" {
     }
   ])
 }
+
+resource "aws_db_instance" "db" {
+  allocated_storage    = 10
+  db_name              = "magz"
+  engine               = "postgres"
+  engine_version       = "14.6"
+  instance_class       = "db.t3.micro"
+  username             = "main"
+  password             = "foobarbaz"
+  skip_final_snapshot  = true
+  db_subnet_group_name = aws_db_subnet_group.default.name
+  publicly_accessible = true
+
+  vpc_security_group_ids = ["${aws_security_group.db.id}"]
+}
+
+resource "aws_db_subnet_group" "default" {
+  name       = "db-subnet-group-1"
+  subnet_ids    = data.aws_subnets.current.ids
+}
