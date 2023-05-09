@@ -1,24 +1,8 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class ToDoItem extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  }
-  ToDoItem.init({
-    name: DataTypes.STRING,
-    description: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'ToDoItem',
-  });
-  return ToDoItem;
-};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ToDoItem = void 0;
+const sequelize_1 = require("sequelize");
+class ToDoItem extends sequelize_1.Model {
+}
+exports.ToDoItem = ToDoItem;
+//# sourceMappingURL=ToDoItem.js.map
