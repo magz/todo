@@ -52,9 +52,9 @@ resource "aws_security_group" "db" {
   ingress {
     description     = "Permit database access"
     security_groups = [aws_security_group.hello_frontend.id]
-    to_port         = 0
-    from_port       = 0
-    protocol        = "-1"
+    to_port         = 5432
+    from_port       = 5432
+    protocol        = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
   }
 
