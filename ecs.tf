@@ -23,8 +23,6 @@ resource "aws_ecs_service" "hello" {
   network_configuration {
     subnets         = data.aws_subnets.current.ids
     security_groups = [aws_security_group.hello_backend.id]
-    # For the demo, attach a public IP. The VPC does not have
-    # a gateway.
     assign_public_ip = true
   }
 
@@ -34,8 +32,6 @@ resource "aws_ecs_service" "hello" {
 resource "aws_ecs_task_definition" "hello" {
   family = var.name
 
-  # Refer to https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html
-  # for cpu and memory values
   cpu    = var.ecs_cpu
   memory = var.ecs_memory
 
