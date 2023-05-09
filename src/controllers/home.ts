@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { sequelize } from "../db";
 // import { sequelize } from "../db";
 
 export const home = (req: Request, res: Response) => {
@@ -6,11 +7,11 @@ export const home = (req: Request, res: Response) => {
 }
 
 
-// export const db_test = async (req: Request, res: Response) => {
-//     try {
-//         await sequelize.authenticate();
-//         res.send("database connection working")
-//       } catch (error) {
-//         res.send("something went wrong with the database connection" + error)
-//       }
-// }
+export const db_test = async (req: Request, res: Response) => {
+    try {
+        await sequelize.authenticate();
+        res.send("database connection working")
+      } catch (error) {
+        res.send("something went wrong with the database connection" + error)
+      }
+}

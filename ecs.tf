@@ -1,11 +1,3 @@
-# -----------------------------------------------------------------------------
-# ECS Fargate Deployment of hello-world-rest
-#
-# * ECS Cluster
-# * ECS Service
-# * ECS Task Definition
-# -----------------------------------------------------------------------------
-
 resource "aws_ecs_cluster" "hello" {
   name = var.name
 
@@ -74,18 +66,40 @@ resource "aws_ecs_task_definition" "hello" {
           awslogs-stream-prefix = "ecs"
         }
       }
+      environment = [
+        {
+          name  = "PORT"
+          value = "5432"
+        },
+        {
+          name  = "PGHOST"
+          value = aws_db_instance.db.address
+        },
+        {
+          name  = "PGUSER"
+          value = var.db_user
+        },
+        {
+          name  = "PGPASS"
+          value = var.db_pass
+        },
+        {
+          name  = "DB_NAME"
+          value = var.db_name
+        }
+      ]
     }
   ])
 }
 
 resource "aws_db_instance" "db" {
   allocated_storage    = 10
-  db_name              = "magz"
+  db_name              = var.db_name
   engine               = "postgres"
   engine_version       = "14.6"
   instance_class       = "db.t3.micro"
   username             = "main"
-  password             = "foobarbaz"
+  password             = var.db_pass
   skip_final_snapshot  = true
   db_subnet_group_name = aws_db_subnet_group.default.name
   publicly_accessible = true
