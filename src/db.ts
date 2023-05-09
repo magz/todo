@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize';
 
 export const sequelize = new Sequelize(
-  process.env.PGDATABASE,
-  process.env.PGUSER, 
+  "magz",
+  "main", 
   "foobarbaz", 
   {
     host: process.env.PGHOST,

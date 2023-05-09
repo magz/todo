@@ -3,14 +3,6 @@ resource "aws_security_group" "hello_backend" {
   description = "Allow connections to the ${var.name} backend"
   vpc_id      = data.aws_vpc.current.id
 
-  #ingress {
-  #  description = "${var.name} backend HTTP"
-  #  from_port   = var.container_port
-  #  to_port     = var.container_port
-  #  protocol "tcp"
-  #  cidr_blocks = [data.aws_vpc.current.cidr_block]
-  #}
-
   ingress {
     description     = "Permit application access"
     security_groups = [aws_security_group.hello_frontend.id]
@@ -60,9 +52,9 @@ resource "aws_security_group" "db" {
   ingress {
     description     = "Permit database access"
     security_groups = [aws_security_group.hello_frontend.id]
-    to_port         = 5432
-    from_port       = 5432
-    protocol        = "tcp"
+    to_port         = 0
+    from_port       = 0
+    protocol        = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
   }
 
