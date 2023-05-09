@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { sequelize } from "../db";
-// import { sequelize } from "../db";
 
 export const home = (req: Request, res: Response) => {
     res.send("hi there!")
