@@ -9,17 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.indexToDoItems = void 0;
-const ToDoItem_1 = require("../models/ToDoItem");
-const indexToDoItems = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const toDoItems = yield ToDoItem_1.ToDoItem.findAll();
-        res.json(toDoItems);
-    }
-    catch (error) {
-        console.error('Error retrieving to-do items:', error);
-        res.status(500).json({ error: 'Failed to retrieve to-do items' });
-    }
-});
-exports.indexToDoItems = indexToDoItems;
-//# sourceMappingURL=to_do_items.js.map
+exports.down = exports.up = void 0;
+const up = function (queryInterface, sequelize) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield queryInterface.renameTable('ToDoItems', "to_do_items", {});
+    });
+};
+exports.up = up;
+const down = function (queryInterface, sequelize) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield queryInterface.renameTable('to_do_items', "ToDoItems", {});
+    });
+};
+exports.down = down;
+//# sourceMappingURL=20230509213940-rename-to-do-items.js.map
