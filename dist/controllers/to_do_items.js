@@ -24,7 +24,11 @@ const getToDoItems = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.getToDoItems = getToDoItems;
 const createToDoItem = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const toDoItem = yield ToDoItem_1.ToDoItem.create(req.body);
+        console.log(req);
+        console.log(req.body);
+        const name = req.body.name;
+        const description = req.body.description;
+        const toDoItem = yield ToDoItem_1.ToDoItem.create({ name, description });
         res.json(toDoItem);
     }
     catch (error) {

@@ -15,7 +15,13 @@ export const getToDoItems = async (req: Request, res: Response) => {
 
 export const createToDoItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const toDoItem = await ToDoItem.create(req.body)  
+    console.log(req)
+    console.log(req.body)
+    const name = req.body.name
+    
+    const description = req.body.description
+
+    const toDoItem = await ToDoItem.create({ name, description })  
     res.json(toDoItem);
   } catch(error) {
     console.error('Error creating to-do item:', error);

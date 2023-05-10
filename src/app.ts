@@ -4,8 +4,12 @@ import { getToDoItems, createToDoItem } from "./controllers/to_do_items";
 
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
 
 const port = 3000
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.get('/', (req: Request, res: Response) => res.send('Hello World!'))
 app.get('/db', db_test)
