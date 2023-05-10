@@ -21,7 +21,7 @@ resource "aws_ecs_service" "hello" {
   }
 
   network_configuration {
-    subnets         = data.aws_subnets.current.ids
+    subnets         = aws_subnet.public[*].id
     security_groups = [aws_security_group.hello_backend.id]
     assign_public_ip = true
   }
@@ -98,12 +98,11 @@ resource "aws_db_instance" "db" {
   password             = var.db_pass
   skip_final_snapshot  = true
   db_subnet_group_name = aws_db_subnet_group.default.name
-  publicly_accessible = true
 
   vpc_security_group_ids = ["${aws_security_group.db.id}"]
 }
 
 resource "aws_db_subnet_group" "default" {
   name       = "db-subnet-group-1"
-  subnet_ids    = data.aws_subnets.current.ids
+  subnet_ids    = aws_subnet.public[*].id
 }

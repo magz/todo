@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.indexToDoItems = void 0;
+exports.createToDoItem = exports.getToDoItems = void 0;
 const ToDoItem_1 = require("../models/ToDoItem");
-const indexToDoItems = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getToDoItems = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const toDoItems = yield ToDoItem_1.ToDoItem.findAll();
         res.json(toDoItems);
@@ -21,5 +21,16 @@ const indexToDoItems = (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).json({ error: 'Failed to retrieve to-do items' });
     }
 });
-exports.indexToDoItems = indexToDoItems;
+exports.getToDoItems = getToDoItems;
+const createToDoItem = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const toDoItem = yield ToDoItem_1.ToDoItem.create(req.body);
+        res.json(toDoItem);
+    }
+    catch (error) {
+        console.error('Error creating to-do item:', error);
+        res.status(500).json({ error: 'Failed to create to-do items' });
+    }
+});
+exports.createToDoItem = createToDoItem;
 //# sourceMappingURL=to_do_items.js.map

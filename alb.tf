@@ -9,13 +9,13 @@ module "alb" {
   # For the demo, expose this publicly
   internal = false
 
-  vpc_id          = data.aws_vpc.current.id
-  subnets         = data.aws_subnets.current.ids
+  vpc_id          = aws_vpc.vpc.id
+  subnets         = aws_subnet.public[*].id
   security_groups = [aws_security_group.hello_frontend.id]
 
   target_groups = [
     {
-      name             = "${var.name}-http"
+      name             = "${var.name}-http-1"
       backend_protocol = "HTTP"
       backend_port     = var.container_port
       target_type      = "ip"

@@ -1,7 +1,7 @@
 resource "aws_security_group" "hello_backend" {
   name        = "${var.name}-backend"
   description = "Allow connections to the ${var.name} backend"
-  vpc_id      = data.aws_vpc.current.id
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     description     = "Permit application access"
@@ -24,7 +24,7 @@ resource "aws_security_group" "hello_backend" {
 resource "aws_security_group" "hello_frontend" {
   name        = "${var.name}-frontend-1"
   description = "Allow connections to the front-end HTTP"
-  vpc_id      = data.aws_vpc.current.id
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     description = "Permit Intranet HTTP access"
@@ -47,7 +47,7 @@ resource "aws_security_group" "hello_frontend" {
 resource "aws_security_group" "db" {
   name        = "${var.name}-db"
   description = "Allow connections to the ${var.name} database"
-  vpc_id      = data.aws_vpc.current.id
+  vpc_id      = aws_vpc.vpc.id
 
   ingress {
     description     = "Permit database access"
