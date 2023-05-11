@@ -1,0 +1,8 @@
+export const development = {
+  "username": "main",
+  "password": "foobarbaz",
+  "database": "magz",
+  "host": "host.docker.internal",
+  "port": 5432,
+  "dialect": "postgres"
+}
