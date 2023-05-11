@@ -50,8 +50,12 @@ resource "aws_ecs_task_definition" "hello" {
       essential = true
       portMappings = [
         {
-          containerPort = var.container_port
-          hostPort      = var.container_port
+          containerPort = var.frontend_port
+          hostPort      = var.frontend_port
+        },
+        {
+          containerPort = var.backend_port
+          hostPort      = var.backend_port
         }
       ]
       logConfiguration = {

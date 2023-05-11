@@ -15,9 +15,21 @@ module "alb" {
 
   target_groups = [
     {
-      name             = "${var.name}-http-1"
+      name             = "${var.name}-backend"
       backend_protocol = "HTTP"
-      backend_port     = var.container_port
+      backend_port     = var.backend_port
+      target_type      = "ip"
+      health_check = {
+        path                = "/"
+        healthy_threshold   = 3
+        interval            = 60
+        unhealthy_threshold = 10
+      }
+    },
+        {
+      name             = "${var.name}-frontend"
+      backend_protocol = "HTTP"
+      backend_port     = var.frontend_port
       target_type      = "ip"
       health_check = {
         path                = "/"
@@ -30,9 +42,14 @@ module "alb" {
 
   http_tcp_listeners = [
     {
-      port               = 80
+      port               = 3000
       protocol           = "HTTP"
       target_group_index = 0
+    },
+    {
+      port               = 80
+      protocol           = "HTTP"
+      target_group_index = 1
     }
   ]
 

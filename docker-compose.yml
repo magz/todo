@@ -1,14 +1,19 @@
 version: '3.9'
 
 services:
-  app:
-    build: .
+  server:
+    build: ./server
     restart: always
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       PGHOST: host.docker.internal
       PGUSER: magz
       PGDATABASE: todo_db
       PGPASSWORD: password
       PGPORT: "5432"
+  client:
+    build: ./client
+    restart: always
+    ports:
+      - "3000:3000"

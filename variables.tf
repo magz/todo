@@ -27,11 +27,18 @@ variable "ecs_image" {
   default     = "magz999/todo"
 }
 
-variable "container_port" {
-  description = "The TCP port the container is listening on."
+variable "frontend_port" {
+  description = "The TCP port the container is listening on for the react app."
   type        = number
   default     = 3000
 }
+
+variable "backend_port" {
+  description = "The TCP port the container is listening on for the backend."
+  type        = number
+  default     = 3001
+}
+
 
 variable "permissions_boundary" {
   description = "The ARN of an IAM permissions boundary to use for creating IAM resources."
